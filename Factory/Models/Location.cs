@@ -10,6 +10,7 @@ namespace Factory.Models
       this.Engineers = new HashSet<Engineer>();
     }
     public int LocationId {get; set;}
+    public string Name {get; set;}
     public string Address {get; set;}
     public virtual ICollection<Machine> Machines {get; set;}
     public virtual ICollection<Engineer> Engineers {get; set;}
