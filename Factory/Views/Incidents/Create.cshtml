@@ -6,20 +6,28 @@
 
 <h3>Add a new incident:</h3>
 <hr />
-@using (Html.BeginForm())
+@if(ViewBag.NumberMachineToRepair == 0)
 {
-  <div class="form-group">
-    @Html.LabelFor(model => model.Type)
-    @Html.TextBoxFor(model => model.Type, new {@class = "form-control"})
-  </div>
-  <div class="form-group"> 
-    @Html.Label("Select machine:")
-    @Html.DropDownList("MachineId")
-  </div>
-  <div class="form-group"> 
-    @Html.Label("Select engineer:")
-    @Html.DropDownList("EngineerId")
-  </div>
-  <input type="submit" value="Add new incident" class="btn" />
+  <p>No machine to make an incident</p>
 }
+else
+{
+  @using (Html.BeginForm())
+  {
+    <div class="form-group">
+      @Html.LabelFor(model => model.Type)
+      @Html.TextBoxFor(model => model.Type, new {@class = "form-control"})
+    </div>
+    <div class="form-group"> 
+      @Html.Label("Select machine:")
+      @Html.DropDownList("MachineId")
+    </div>
+    <div class="form-group"> 
+      @Html.Label("Select engineer:")
+      @Html.DropDownList("EngineerId")
+    </div>
+    <input type="submit" value="Add new incident" class="btn" />
+  }
+}
+
 <p>@Html.ActionLink("Back to incidents list", "Index")</p>
