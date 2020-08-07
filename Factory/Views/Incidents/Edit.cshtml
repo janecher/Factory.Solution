@@ -2,7 +2,6 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models
 @model Factory.Models.Incident
 
 <h3>Edit an incident:</h3>
@@ -14,7 +13,7 @@
   @Html.HiddenFor(model => model.IncidentId)
   <div class="form-group">
     @Html.LabelFor(model => model.Type)
-    @Html.EditFor(model => model.Type, new {@class = "form-control"})
+    @Html.EditorFor(model => model.Type, new {@class = "form-control"})
   </div>
   <div class="form-group"> 
     @Html.Label("Select machine:")

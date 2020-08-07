@@ -21,7 +21,7 @@ else
   @foreach(var machine in Model.Machines)
   {
     //add link to machine info
-    <li>@machineName | @machine.Number, @machine.Status</li>
+    <li>@machine.Name | @machine.Number, @machine.Status</li>
     @using (Html.BeginForm("DeleteMachine", "Locations"))
     {
       @Html.Hidden("locationId", Model.LocationId)

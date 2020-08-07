@@ -2,7 +2,6 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models
 @model Factory.Models.Machine
 
 <h3>Add a new machine:</h3>
@@ -19,7 +18,12 @@
   </div>
   <div class="form-group"> 
     @Html.Label("Select status:")
-    @Html.DropDownList("StatusList")
+    @Html.DropDownList("Status", new List<SelectListItem>
+    {
+        new SelectListItem{ Text="Operational"},
+        new SelectListItem{ Text="Repairng"},
+        new SelectListItem{ Text="Malfunctioning"}
+    })
   </div>
   <div class="form-group"> 
     @Html.Label("Select location:")

@@ -43,7 +43,7 @@ else
   @foreach(var incident in Model.Incidents)
   {
     //add link to incident details
-    <li>@incident.Name</li>
+    <li>@incident.Type</li>
     @using (Html.BeginForm("DeleteIncident", "Engineers"))
     {
       @Html.Hidden("engineerId", Model.EngineerId)

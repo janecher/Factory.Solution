@@ -20,7 +20,7 @@ namespace Factory.Controllers
     {
       if(!string.IsNullOrEmpty(searchLocation))
       {
-        var searchLocations = _db.Locations.Where(locations => locations.Name.Contains(searchLocation) || courses.Address.Contains(searchLocation)).ToList();                    
+        var searchLocations = _db.Locations.Where(locations => locations.Name.Contains(searchLocation) || locations.Address.Contains(searchLocation)).ToList();                    
         return View(searchLocations);
       }
       return View(_db.Locations.ToList());

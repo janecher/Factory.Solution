@@ -11,12 +11,12 @@
   @Html.HiddenFor(model => model.LocationId)
   <div class="form-group">
     @Html.LabelFor(model => model.Name)
-    @Html.EditFor(model => model.Name, new {@class = "form-control"})
+    @Html.EditorFor(model => model.Name, new {@class = "form-control"})
   </div>
   <div class="form-group">
     @Html.LabelFor(model => model.Address)
-    @Html.EditFor(model => model.Address, new {@class = "form-control"})
+    @Html.EditorFor(model => model.Address, new {@class = "form-control"})
   </div>
-  <input type="submit" value="Add new location" class="btn" />
+  <input type="submit" value="Edit" class="btn" />
 }
 <p>@Html.ActionLink("Back to locations list", "Index")</p>

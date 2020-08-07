@@ -28,7 +28,6 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.StatusList = new List<string>(){"Operational", "Repairng", "Malfunctioning"};
       ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
       return View();
     }
@@ -54,7 +53,6 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id );
-      ViewBag.StatusList = new List<string>(){"Operational", "Repairng", "Malfunctioning"};
       ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
       return View(thisMachine);
     }

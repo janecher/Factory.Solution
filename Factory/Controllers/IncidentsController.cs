@@ -41,7 +41,7 @@ namespace Factory.Controllers
       var thisIncident = _db.Incidents
         .Include(incident => incident.Machine)
         .Include(incident => incident.Engineer)        
-        .FirstOrDefault(incidents => incidentes.IncidentId == id);
+        .FirstOrDefault(incidents => incidents.IncidentId == id);
 
       return View(thisIncident);
     }
