@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model List<Factory.Models.Engineer>
+
+<p>Find engineer:</p>
+<hr />
+@using (Html.BeginForm("Index", "Engineers", FormMethod.Get))
+{
+  <p>@Html.TextBox("searchEngineer")</p>
+  <button class="btn" type="submit">Search</button>
+}
+
+<h3>Engineer list:</h3>
+<hr />
+@if (@Model.Count == 0)
+{
+  <p>No engineer have been found.</p>
+} 
+
+@foreach (Engineer engineer in Model)
+{
+  <p>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId }) | @engineer.LicenseNumber</p>
+  @if(engineer.IsActive)
+  {
+    <p class="active">Active</p>
+  }
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Add new engineer", "Create")</p> 

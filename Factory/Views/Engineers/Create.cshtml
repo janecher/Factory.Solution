@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model Factory.Models.Engineer
+
+<h3>Add a new engineer:</h3>
+<hr />
+@using (Html.BeginForm())
+{
+  <div class="form-group">
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model => model.License)
+    @Html.TextBoxFor(model => model.LicenseNumber, new {@class = "form-control"})
+  </div>
+  <div class="form-group"> 
+    @Html.Label("Select location:")
+    @Html.DropDownList("LocationId")
+  </div>
+  <div class="form-group"> 
+    @Html.Label("Select machines:")
+    @foreach (Machine machine in ViewBag.MachineId)
+    {
+      @Html.Label(machine.Name)
+      @Html.CheckBox("MachineId", false, new { value = machine.MachineId })
+    }
+  </div>
+  <input type="submit" value="Add new engineer" class="btn" />
+}
+<p>@Html.ActionLink("Back to engineers list", "Index")</p>
