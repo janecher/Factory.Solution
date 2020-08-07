@@ -5,14 +5,6 @@
 @using Factory.Models
 @model List<Factory.Models.Incident>
 
-<p>Find incident:</p>
-<hr />
-@using (Html.BeginForm("Index", "Incidents", FormMethod.Get))
-{
-  <p>@Html.TextBox("searchIncidents")</p>
-  <button class="btn" type="submit">Search</button>
-}
-
 <h3>Incident list:</h3>
 <hr />
 @if (@Model.Count == 0)

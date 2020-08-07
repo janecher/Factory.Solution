@@ -24,6 +24,7 @@ else
     <li>@machineName | @machine.Number, @machine.Status</li>
     @using (Html.BeginForm("DeleteMachine", "Locations"))
     {
+      @Html.Hidden("locationId", Model.LocationId)
       @Html.Hidden("machineId", @machine.MachineId)
       <input type="submit" value="Delete" class="btn" />
     }
@@ -41,10 +42,11 @@ else
   <ul>
   @foreach(var engineer in Model.Engineers)
   {
-    //add link to incident details
+    //add link to engineer details
     <li>@engineer.Name</li>
     @using (Html.BeginForm("DeleteEngineer", "Locations"))
     {
+      @Html.Hidden("locationId", Model.LocationId)
       @Html.Hidden("engineerId", @engineer.EngineerId)
       <input type="submit" value="Delete" class="btn" />
     }

@@ -40,13 +40,14 @@ else
 else
 {
   <ul>
-  @foreach(var join in Model.Incidents)
+  @foreach(var incident in Model.Incidents)
   {
     //add link to incident details
-    <li>@join.Incident.Name</li>
+    <li>@incident.Name</li>
     @using (Html.BeginForm("DeleteIncident", "Engineers"))
     {
-      @Html.Hidden("joinId", @join.IncidentId)
+      @Html.Hidden("engineerId", Model.EngineerId)
+      @Html.Hidden("incidentId", @incident.IncidentId)
       <input type="submit" value="Delete" class="btn" />
     }
   }
