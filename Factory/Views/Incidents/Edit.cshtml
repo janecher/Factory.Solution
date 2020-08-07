@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model Factory.Models.Incident
+
+<h3>Edit an incident:</h3>
+<hr />
+<p class="info">@Html.DisplayFor(model => model.Type)</p>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.IncidentId)
+  <div class="form-group">
+    @Html.LabelFor(model => model.Type)
+    @Html.TextBoxFor(model => model.Type, new {@class = "form-control"})
+  </div>
+  <div class="form-group"> 
+    @Html.Label("Select machine:")
+    @Html.DropDownList("MachineId")
+  </div>
+  <div class="form-group"> 
+    @Html.Label("Select engineer:")
+    @Html.DropDownList("EngineerId")
+  </div>
+  <input type="submit" value="Edit" class="btn" />
+}
+<p>@Html.ActionLink("Back to incidents list", "Index")</p>

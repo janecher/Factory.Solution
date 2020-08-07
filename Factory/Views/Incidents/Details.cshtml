@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Incident
+
+<h3>Incident info:</h3>
+<hr />
+<p class="info">@Html.DisplayFor(model => model.Type)</p>
+<p class="info">@Html.DisplayFor(model => model.StatusInfo)</p>
+<p class="info">@Html.DisplayFor(model => model.Machine.Name)</p>
+<p class="info">@Html.DisplayFor(model => model.Engineer.Name)</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Back to incidents list", "Index")</p>
+<p>@Html.ActionLink("Edit incident info", "Edit", new { id = Model.IncidentId })</p>
+<p>@Html.ActionLink("Delete incident", "Delete", new { id = Model.IncidentId })</p>

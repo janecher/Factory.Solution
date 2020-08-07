@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model List<Factory.Models.Incident>
+
+<p>Find incident:</p>
+<hr />
+@using (Html.BeginForm("Index", "Incidents", FormMethod.Get))
+{
+  <p>@Html.TextBox("searchIncidents")</p>
+  <button class="btn" type="submit">Search</button>
+}
+
+<h3>Incident list:</h3>
+<hr />
+@if (@Model.Count == 0)
+{
+  <p>No incidents have been found.</p>
+} 
+
+@foreach (Incident incident in Model)
+{
+  <p>@Html.ActionLink($"{incident.Type}", "Details", new { id = incident.IncidentId }) | @incident.Status</p>  
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Add new incident", "Create")</p> 
