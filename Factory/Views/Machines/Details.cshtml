@@ -12,6 +12,31 @@
 <p class="info">@Html.DisplayFor(model => model.Location.Name)</p>
 
 <hr />
+<h4>List of all engineers licensed to repair it:</h4>
+@if(@Model.Engineers.Count == 0)
+{
+  <p>Engineer doesn't have any machine in profile.</p>
+}
+else
+{
+  <ul>
+  @foreach(var join in Model.Engineers)
+  {
+    //add link to machine info
+    <li>@join.Engineer.Name | @join.Engineer.LicenseName</li>
+    if(join.Engineer.IsActive)
+    {
+      <p class="active">Busy</p>
+    }
+    @using (Html.BeginForm("DeleteEngineer", "Machines"))
+    {
+      @Html.Hidden("joinId", @join.EngineerMachineId)
+      <input type="submit" value="Delete" class="btn" />
+    }
+  }
+  </ul>
+}
+<hr />
 <h4>Incidents:</h4>
 @if(@Model.Machines.Count == 0)
 {

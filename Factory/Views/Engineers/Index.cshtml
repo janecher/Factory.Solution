@@ -5,7 +5,7 @@
 @using Factory.Models
 @model List<Factory.Models.Engineer>
 
-<p>Find engineer:</p>
+<p>Find engineer (by name or license):</p>
 <hr />
 @using (Html.BeginForm("Index", "Engineers", FormMethod.Get))
 {
@@ -22,7 +22,7 @@
 
 @foreach (Engineer engineer in Model)
 {
-  <p>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId }) | @engineer.LicenseNumber</p>
+  <p>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId }) | @engineer.LicenseName</p>
   @if(engineer.IsActive)
   {
     <p class="active">Active</p>

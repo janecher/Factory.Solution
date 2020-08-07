@@ -7,9 +7,11 @@
 <h3>Engineer info:</h3>
 <hr />
 <p class="info">@Html.DisplayFor(model => model.Name)</p>
-<p class="info">@Html.DisplayFor(model => model.LicenseNumber)</p>
+<p class="info">@Html.DisplayFor(model => model.LicenseName)</p>
+<p class="info">@Html.DisplayFor(model => model.Location.Name)</p>
+
 <hr />
-<h4>Machines:</h4>
+<h4>List of all machines that engineer is licensed to repair:</h4>
 @if(@Model.Machines.Count == 0)
 {
   <p>Engineer doesn't have any machine in profile.</p>
@@ -19,6 +21,7 @@ else
   <ul>
   @foreach(var join in Model.Machines)
   {
+    //add link to machine info
     <li>@join.Machine.Name | @join.Machine.Number, @join.Machine.Status</li>
     @using (Html.BeginForm("DeleteMachine", "Engineers"))
     {
@@ -39,6 +42,7 @@ else
   <ul>
   @foreach(var join in Model.Incidents)
   {
+    //add link to incident details
     <li>@join.Incident.Name</li>
     @using (Html.BeginForm("DeleteIncident", "Engineers"))
     {
@@ -54,4 +58,3 @@ else
 <p>@Html.ActionLink("Edit engineer info", "Edit", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete engineer", "Delete", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Add a machine", "AddMachine", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Add an incident", "AddIncident", new { id = Model.EngineerId })</p>
