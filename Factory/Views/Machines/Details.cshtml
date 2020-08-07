@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h3>Machine info:</h3>
+<hr />
+<p class="info">@Html.DisplayFor(model => model.Name)</p>
+<p class="info">@Html.DisplayFor(model => model.Number)</p>
+<p class="info">@Html.DisplayFor(model => model.Status)</p>
+<p class="info">@Html.DisplayFor(model => model.Location.Name)</p>
+
+<hr />
+<h4>Incidents:</h4>
+@if(@Model.Machines.Count == 0)
+{
+  <p>Machine doesn't have any incident.</p>
+}
+else
+{
+  <ul>
+  @foreach(var join in Model.Incidents)
+  {
+    <li>@join.Incident.Name</li>
+    @using (Html.BeginForm("DeleteIncident", "Machines"))
+    {
+      @Html.Hidden("joinId", @join.IncidentId)
+      <input type="submit" value="Delete" class="btn" />
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Back to machines list", "Index")</p>
+<p>@Html.ActionLink("Edit machine info", "Edit", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Delete machine", "Delete", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Add an incident", "AddIncident", new { id = Model.MachineId })</p>
