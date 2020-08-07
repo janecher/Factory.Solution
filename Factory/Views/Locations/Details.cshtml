@@ -1,0 +1,58 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Location
+
+<h3>Location info:</h3>
+<hr />
+<p class="info">@Html.DisplayFor(model => model.Name)</p>
+<p class="info">@Html.DisplayFor(model => model.Address)</p>
+
+<hr />
+<h4>List of all machines at this location:</h4>
+@if(@Model.Machines.Count == 0)
+{
+  <p>Location doesn't have any machine.</p>
+}
+else
+{
+  <ul>
+  @foreach(var machine in Model.Machines)
+  {
+    //add link to machine info
+    <li>@machineName | @machine.Number, @machine.Status</li>
+    @using (Html.BeginForm("DeleteMachine", "Locations"))
+    {
+      @Html.Hidden("machineId", @machine.MachineId)
+      <input type="submit" value="Delete" class="btn" />
+    }
+  }
+  </ul>
+}
+<hr />
+<h4>List of all engineers at this location:</h4>
+@if(@Model.Engineers.Count == 0)
+{
+  <p>Location doesn't have any engineers.</p>
+}
+else
+{
+  <ul>
+  @foreach(var engineer in Model.Engineers)
+  {
+    //add link to incident details
+    <li>@engineer.Name</li>
+    @using (Html.BeginForm("DeleteEngineer", "Locations"))
+    {
+      @Html.Hidden("engineerId", @engineer.EngineerId)
+      <input type="submit" value="Delete" class="btn" />
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Back to locations list", "Index")</p>
+<p>@Html.ActionLink("Edit location info", "Edit", new { id = Model.LocationId })</p>
+<p>@Html.ActionLink("Delete location", "Delete", new { id = Model.LocationId })</p>
