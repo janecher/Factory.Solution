@@ -6,13 +6,28 @@ namespace Factory.Models
   {
     public Incident()
     {
-      this.Machines = new HashSet<Machine>();
-      this.Engineers = new HashSet<Engineer>();
+      Status = true;
     }
     public int IncidentId {get; set;}
     public string Type {get; set;}
     public bool Status {get; set;}
-    public virtual ICollection<Machine> Machines {get; set;}
-    public virtual ICollection<Engineer> Engineers {get; set;}
+
+    public string StatusInfo 
+    { get 
+      { 
+        if(Status) 
+        {
+          return "Active";
+        }
+        else
+        {
+          return "Closed";
+        }
+      }
+    }
+    public int EngineerId {get; set;}
+    public int MachineId{ get; set;}
+    public virtual Machine Machines {get; set;}
+    public virtual Engineer Engineers {get; set;}
   }
 }
