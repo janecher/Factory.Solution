@@ -5,12 +5,12 @@
 @using Factory.Models
 @model List<Factory.Models.Machine>
 
-<p>Find machine (by name or number):</p>
+<p>Find machine:</p>
 <hr />
 @using (Html.BeginForm("Index", "Machines", FormMethod.Get))
 {
   <p>@Html.TextBox("searchMachine")</p>
-  <button class="btn" type="submit">Search</button>
+  <button class="btn" Description="submit">Search</button>
 }
 
 <h3>Machine list:</h3>

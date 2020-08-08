@@ -14,8 +14,8 @@
 
 @foreach (Incident incident in Model)
 {
-  <p>@Html.ActionLink($"{incident.Type}", "Details", new { id = incident.IncidentId }) | @incident.Status</p>  
+  <p>@Html.ActionLink($"{incident.Description}", "Details", new { id = incident.IncidentId })</p>  
 }
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
-@*<p>@Html.ActionLink("Add new incident", "Create")</p> *@
+<p>@Html.ActionLink("Add new incident", "Create")</p> 

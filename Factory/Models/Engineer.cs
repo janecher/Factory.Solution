@@ -11,8 +11,20 @@ namespace Factory.Models
     }
     public int EngineerId {get; set;}
     public string Name {get; set;}
-    public string LicenseName {get; set;}
-    public bool IsActive {get; set;}
+    public string License {get; set;}
+    public string Active 
+    { get
+      {
+        if(Incidents.Count != 0)
+        {
+          return "Active";
+        }
+        else
+        {
+          return "";
+        }
+      }
+    }
     public virtual ICollection<Incident> Incidents {get; set;}
     public virtual ICollection<EngineerMachine> Machines {get; set;}
     public int LocationId {get; set;}

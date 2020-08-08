@@ -20,7 +20,7 @@ namespace Factory.Controllers
     {
       if(!string.IsNullOrEmpty(searchMachine))
       {
-        var searchMachines = _db.Machines.Where(machines => machines.Name.Contains(searchMachine) || machines.Number.Contains(searchMachine)).ToList();                    
+        var searchMachines = _db.Machines.Where(machines => machines.Name.Contains(searchMachine)).ToList();                    
         return View(searchMachines);
       }
       return View(_db.Machines.ToList());
@@ -63,26 +63,6 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult AddIncident(int id)
-    {
-      var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id );
-      return View(thisMachine);
-    }
-
-    [HttpPost]
-    public ActionResult AddIncident(Machine machine, int EngineerId)
-    {
-      if(EngineerId !=0)
-      {
-        _db.Incidents.Add(new Incident() { MachineId = machine.MachineId, EngineerId = EngineerId});        
-      }
-      else
-      {
-        _db.Incidents.Add(new Incident() { MachineId = machine.MachineId}); 
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
 
     [HttpPost]
     public ActionResult DeleteIncident(int machineId, int incidentId)
@@ -102,6 +82,7 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     public ActionResult Delete(int id)
     {
       var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id );

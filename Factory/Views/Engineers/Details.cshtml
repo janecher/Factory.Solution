@@ -7,7 +7,7 @@
 <h3>Engineer info:</h3>
 <hr />
 <p class="info">@Html.DisplayFor(model => model.Name)</p>
-<p class="info">@Html.DisplayFor(model => model.LicenseName)</p>
+<p class="info">@Html.DisplayFor(model => model.License)</p>
 <p class="info">@Html.DisplayFor(model => model.Location.Name)</p>
 
 <hr />
@@ -21,11 +21,11 @@ else
   <ul>
   @foreach(var join in Model.Machines)
   {
-    <li>@Html.ActionLink($"{@join.Machine.Name | @join.Machine.Status}", "Details", "Machines", new { id = join.Machine.MachineId})</li>
+    <li>@Html.ActionLink($"{@join.Machine.Name}, {@join.Machine.Status}", "Details", "Machines", new { id = join.Machine.MachineId})</li>
     @using (Html.BeginForm("DeleteMachine", "Engineers"))
     {
       @Html.Hidden("joinId", @join.EngineerMachineId)
-      <input type="submit" value="Delete" class="btn" />
+      <input Description="submit" value="Delete" class="btn" />
     }
   }
   </ul>
@@ -41,12 +41,12 @@ else
   <ul>
   @foreach(var incident in Model.Incidents)
   {
-    <li>@Html.ActionLink($"{@incident.Type}", "Details", "Incidents", new { id = incident.IncidentId})</li>
+    <li>@Html.ActionLink($"{@incident.Description}", "Details", "Incidents", new { id = incident.IncidentId})</li>
     @using (Html.BeginForm("DeleteIncident", "Engineers"))
     {
       @Html.Hidden("engineerId", Model.EngineerId)
       @Html.Hidden("incidentId", @incident.IncidentId)
-      <input type="submit" value="Delete" class="btn" />
+      <input Description="submit" value="Delete" class="btn" />
     }
   }
   </ul>

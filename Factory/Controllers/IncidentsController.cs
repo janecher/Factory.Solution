@@ -23,9 +23,9 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      var thisMachines = _db.Machines.Where(machine => machine.Status == "Malfunctioning");
-      ViewBag.NumberMachineToRepair = thisMachines.ToList().Count;
-      ViewBag.MachineId = new SelectList(thisMachines, "MachineId", "Name");
+      ViewBag.MachinesNumber = _db.Machines.ToList().Count;
+      ViewBag.EngineersNumber = _db.Engineers.ToList().Count;
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View();
     }
@@ -51,7 +51,7 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       var thisIncident = _db.Incidents.FirstOrDefault(incidents => incidents.IncidentId ==id);
-     ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View(thisIncident);
     }

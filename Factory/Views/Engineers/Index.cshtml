@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Index", "Engineers", FormMethod.Get))
 {
   <p>@Html.TextBox("searchEngineer")</p>
-  <button class="btn" type="submit">Search</button>
+  <button class="btn" Description="submit">Search</button>
 }
 
 <h3>Engineer list:</h3>
@@ -22,11 +22,9 @@
 
 @foreach (Engineer engineer in Model)
 {
-  <p>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId }) | @engineer.LicenseName</p>
-  @if(engineer.IsActive)
-  {
-    <p class="active">Active</p>
-  }
+  <p>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId }) | @engineer.License</p>
+  <p>@engineer.Active</p>
+  
 }
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

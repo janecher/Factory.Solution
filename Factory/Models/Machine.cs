@@ -8,11 +8,9 @@ namespace Factory.Models
     {
       this.Incidents = new HashSet<Incident>();
       this.Engineers = new HashSet<EngineerMachine>();
-      Status = "Operational";
     }
     public int MachineId {get; set;}
     public string Name {get; set;}
-    public string Number {get; set;}
     public string Status 
     { get
       {

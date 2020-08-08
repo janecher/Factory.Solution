@@ -20,7 +20,7 @@ namespace Factory.Controllers
     {
       if(!string.IsNullOrEmpty(searchEngineer))
       {
-        var searchEngineers = _db.Engineers.Where(engineers => engineers.Name.Contains(searchEngineer) || engineers.LicenseName.Contains(searchEngineer)).ToList();                    
+        var searchEngineers = _db.Engineers.Where(engineers => engineers.Name.Contains(searchEngineer) || engineers.License.Contains(searchEngineer)).ToList();                    
         return View(searchEngineers);
       }
       return View(_db.Engineers.ToList());
