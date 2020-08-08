@@ -26,7 +26,7 @@ namespace Factory.Models
     }
     public virtual ICollection<Incident> Incidents {get; set;}
     public virtual ICollection<EngineerMachine> Engineers {get; set;}
-    public int LocationId {get; set;}
+    public int? LocationId {get; set;}
     public virtual Location Location {get; set;}
   }
 }

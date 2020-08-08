@@ -51,6 +51,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       var thisEngineer = _db.Engineers
+        .Include(engineer => engineer.Location)
         .Include(engineer => engineer.Incidents)
         .Include(engineer => engineer.Machines).ThenInclude(join => join.Machine)
         .FirstOrDefault(engineers => engineers.EngineerId == id );

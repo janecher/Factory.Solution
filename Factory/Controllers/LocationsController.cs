@@ -72,6 +72,16 @@ namespace Factory.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       var thisLocation = _db.Locations.FirstOrDefault(locations => locations.LocationId == id);
+      var engineersAtThisLocation = _db.Engineers.Where(engineer => engineer.LocationId == id);
+      var machinesAtThisLocation = _db.Machines.Where(machine => machine.LocationId == id);
+      foreach(var eng in engineersAtThisLocation)
+      {
+        eng.LocationId = null;
+      }
+      foreach(var mach in machinesAtThisLocation)
+      {
+        mach.LocationId = null;
+      }
       _db.Locations.Remove(thisLocation);
       _db.SaveChanges();
       return RedirectToAction("Index");

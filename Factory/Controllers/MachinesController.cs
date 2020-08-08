@@ -43,6 +43,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       var thisMachine = _db.Machines
+        .Include(machine => machine.Location)
         .Include(machine => machine.Incidents)
         .Include(machine => machine.Engineers).ThenInclude(join => join.Engineer)
         .FirstOrDefault(machines => machines.MachineId == id );

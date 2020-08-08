@@ -15,7 +15,10 @@
     <h3>Machine info:</h3>
     <hr />
     <p class="info">Name: @Html.DisplayFor(model => model.Name)</p>
-    <p class="info">Location: @Html.DisplayFor(model => model.Location.Name)</p>
+    @if(Model.LocationId != null)
+    {      
+      <p class="info">Location: @Html.DisplayFor(model => model.Location.Name)</p>
+    }
     <p class="status">@Html.DisplayFor(model => model.Status)</p>
     <hr />
     <h4>List of all engineers licensed to repair it:</h4>
