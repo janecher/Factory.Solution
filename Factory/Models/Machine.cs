@@ -8,11 +8,24 @@ namespace Factory.Models
     {
       this.Incidents = new HashSet<Incident>();
       this.Engineers = new HashSet<EngineerMachine>();
+      Status = "Operational";
     }
     public int MachineId {get; set;}
     public string Name {get; set;}
     public string Number {get; set;}
-    public string Status {get; set;}
+    public string Status 
+    { get
+      {
+        if(Incidents.Count != 0)
+        {
+          return "Malfunctioning";
+        }
+        else
+        {
+          return "Operational";
+        }
+      }
+    }
     public virtual ICollection<Incident> Incidents {get; set;}
     public virtual ICollection<EngineerMachine> Engineers {get; set;}
     public int LocationId {get; set;}

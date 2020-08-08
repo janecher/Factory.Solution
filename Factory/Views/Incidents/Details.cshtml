@@ -8,8 +8,13 @@
 <hr />
 <p class="info">@Html.DisplayFor(model => model.Type)</p>
 <p class="info">@Html.DisplayFor(model => model.StatusInfo)</p>
-<p class="info">@Html.DisplayFor(model => model.Machine.Name)</p>
-<p class="info">@Html.DisplayFor(model => model.Engineer.Name)</p>
+<p>@Html.ActionLink($"{Model.Machine.Name}", "Details", "Machines", new { id = Model.IncidentId})</p>
+@if(Model.EngineerId != null)
+{
+  <p>@Html.ActionLink($"{Model.Engineer.Name}", "Details", "Engineers", new { id = Model.EngineerId})</p>
+}
+@*<p class="info">@Html.DisplayFor(model => model.Machine.Name)</p>
+<p class="info">@Html.DisplayFor(model => model.Engineer.Name)</p>*@
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
 <p>@Html.ActionLink("Back to incidents list", "Index")</p>

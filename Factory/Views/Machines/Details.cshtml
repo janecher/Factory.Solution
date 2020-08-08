@@ -23,7 +23,7 @@ else
   @foreach(var join in Model.Engineers)
   {
     //add link to engineer info
-    <li>@join.Engineer.Name | @join.Engineer.LicenseName</li>
+    <li>@Html.ActionLink($"{join.Engineer.Name}", "Details", "Engineers", new { id = join.EngineerId})</li>
     if(join.Engineer.IsActive)
     {
       <p class="active">Busy</p>
@@ -48,7 +48,7 @@ else
   @foreach(var incident in Model.Incidents)
   {
     //add link to incident info
-    <li>@incident.Type</li>
+    <li>@Html.ActionLink($"{incident.Type}", "Details", "Incidents", new { id = incident.IncidentId})</li>
     @using (Html.BeginForm("DeleteIncident", "Machines"))
     {
       @Html.Hidden("machineId", Model.MachineId)
@@ -63,3 +63,4 @@ else
 <p>@Html.ActionLink("Back to machines list", "Index")</p>
 <p>@Html.ActionLink("Edit machine info", "Edit", new { id = Model.MachineId })</p>
 <p>@Html.ActionLink("Delete machine", "Delete", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Add incident", "AddIncident", new { id = Model.EngineerId })</p>

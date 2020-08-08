@@ -22,7 +22,7 @@
 
 @foreach (Machine machine in Model)
 {
-  <p>@Html.ActionLink($"{machine.Name}", "Details", new { id = machine.MachineId }) | @machine.Number, @machine.Status</p>
+  <p>@Html.ActionLink($"{machine.Name}", "Details", new { id = machine.MachineId }) | @machine.Status</p>
 }
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -46,7 +46,6 @@ namespace Factory.Controllers
         .Include(machine => machine.Incidents)
         .Include(machine => machine.Engineers).ThenInclude(join => join.Engineer)
         .FirstOrDefault(machines => machines.MachineId == id );
-
       return View(thisMachine);
     }
 
@@ -61,6 +60,26 @@ namespace Factory.Controllers
     public ActionResult Edit(Machine machine)
     {
       _db.Entry(machine).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    public ActionResult AddIncident(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id );
+      return View(thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult AddIncident(Machine machine, int EngineerId)
+    {
+      if(EngineerId !=0)
+      {
+        _db.Incidents.Add(new Incident() { MachineId = machine.MachineId, EngineerId = EngineerId});        
+      }
+      else
+      {
+        _db.Incidents.Add(new Incident() { MachineId = machine.MachineId}); 
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
