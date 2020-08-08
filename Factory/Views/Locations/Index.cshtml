@@ -5,25 +5,27 @@
 @using Factory.Models
 @model List<Factory.Models.Location>
 
-<p>Find location:</p>
-<hr />
-@using (Html.BeginForm("Index", "Locations", FormMethod.Get))
-{
-  <p>@Html.TextBox("searchLocation")</p>
-  <button class="btn" Description="submit">Search</button>
-}
-
-<h3>Locations list:</h3>
-<hr />
-@if (@Model.Count == 0)
-{
-  <p>No location have been found.</p>
-} 
-
-@foreach (Location location in Model)
-{
-  <p>@Html.ActionLink($"{location.Name}", "Details", new { id = location.LocationId })</p>  
-}
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
-<p>@Html.ActionLink("Add new location", "Create")</p> 
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Home", "Index", "Home")</p>
+    <p class="links-buttons">@Html.ActionLink("Add new location", "Create")</p>
+  </div>
+  <div class="col-md-9">
+    <p>Find location:</p>
+    @using (Html.BeginForm("Index", "Locations", FormMethod.Get))
+    {
+      <p>@Html.TextBox("searchLocation")</p>
+      <button class="btn" type="submit">Search</button>
+    }
+    <h3>Locations list:</h3>
+    <hr />
+    @if (@Model.Count == 0)
+    {
+      <p>No location have been found.</p>
+    } 
+    @foreach (Location location in Model)
+    {
+      <p class="links">@Html.ActionLink($"{location.Name}", "Details", new { id = location.LocationId })</p>  
+    }
+  </div>
+</div>

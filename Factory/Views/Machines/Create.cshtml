@@ -4,18 +4,24 @@
 
 @model Factory.Models.Machine
 
-<h3>Add new machine:</h3>
-<hr />
-@using (Html.BeginForm())
-{
-  <div class="form-group">
-    @Html.LabelFor(model => model.Name)
-    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Back to machines list", "Index")</p>
   </div>
-  <div class="form-group"> 
-    @Html.Label("Select location:")
-    @Html.DropDownList("LocationId")
+  <div class="col-md-9">
+    <h3>Add new machine:</h3>
+    <hr />
+    @using (Html.BeginForm())
+    {
+      <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+      </div>
+      <div class="form-group"> 
+        @Html.Label("Select location:")
+        @Html.DropDownList("LocationId")
+      </div>
+      <input type="submit" value="Add new machine" class="btn" />
+    }
   </div>
-  <input Description="submit" value="Add new machine" class="btn" />
-}
-<p>@Html.ActionLink("Back to machines list", "Index")</p>
+</div>

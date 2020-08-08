@@ -5,30 +5,37 @@
 @using Factory.Models
 @model Factory.Models.Engineer
 
-<h3>Add a new engineer:</h3>
-<hr />
-@using (Html.BeginForm())
-{
-  <div class="form-group">
-    @Html.LabelFor(model => model.Name)
-    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Back to engineers list", "Index")</p>
   </div>
-  <div class="form-group">
-    @Html.LabelFor(model => model.License)
-    @Html.TextBoxFor(model => model.License, new {@class = "form-control"})
-  </div>
-  <div class="form-group"> 
-    @Html.Label("Select location:")
-    @Html.DropDownList("LocationId")
-  </div>
-  <div class="form-group"> 
-    @Html.Label("Select machines:")
-    @foreach (Machine machine in ViewBag.MachineId)
+  <div class="col-md-9">
+    <h3>Add a new engineer:</h3>
+    <hr />
+    @using (Html.BeginForm())
     {
-      @Html.Label(machine.Name)
-      @Html.CheckBox("MachineId", false, new { value = machine.MachineId })
+      <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+      </div>
+      <div class="form-group">
+        @Html.LabelFor(model => model.License)
+        @Html.TextBoxFor(model => model.License, new {@class = "form-control"})
+      </div>
+      <div class="form-group"> 
+        @Html.Label("Select location:")
+        @Html.DropDownList("LocationId")
+      </div>
+      <div class="form-group"> 
+        @Html.Label("Select machines:")
+        <br>
+        @foreach (Machine machine in ViewBag.MachineId)
+        {
+          @Html.Label(machine.Name)
+          @Html.CheckBox("MachineId", false, new { value = machine.MachineId, @class="checkbox"})
+        }
+      </div>
+      <input type="submit" value="Add new engineer" class="btn" />
     }
   </div>
-  <input Description="submit" value="Add new engineer" class="btn" />
-}
-<p>@Html.ActionLink("Back to engineers list", "Index")</p>
+</div>

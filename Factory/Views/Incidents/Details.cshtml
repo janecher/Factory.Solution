@@ -4,14 +4,18 @@
 
 @model Factory.Models.Incident
 
-<h3>Incident info:</h3>
-<hr />
-<p class="info">@Html.DisplayFor(model => model.Description)</p>
-<p class="info">@Html.ActionLink($"{Model.Machine.Name}", "Details", "Machines", new { id = Model.IncidentId})</p>
-<p class="info">@Html.ActionLink($"{Model.Engineer.Name}", "Details", "Engineers", new { id = Model.EngineerId})</p>
-
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
-<p>@Html.ActionLink("Back to incidents list", "Index")</p>
-<p>@Html.ActionLink("Edit incident info", "Edit", new { id = Model.IncidentId })</p>
-<p>@Html.ActionLink("Delete incident", "Delete", new { id = Model.IncidentId })</p>
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Home", "Index", "Home")</p>
+    <p class="links-buttons">@Html.ActionLink("Back to incidents list", "Index")</p>
+    <p class="links-buttons">@Html.ActionLink("Edit incident info", "Edit", new { id = Model.IncidentId })</p>
+    <p class="links-buttons">@Html.ActionLink("Delete incident", "Delete", new { id = Model.IncidentId })</p>
+  </div>
+  <div class="col-md-9">
+    <h3>Incident info:</h3>
+    <hr />
+    <p class="info">Description: @Html.DisplayFor(model => model.Description)</p>
+    <p class="links">Machine: @Html.ActionLink($"{Model.Machine.Name}", "Details", "Machines", new { id = Model.MachineId})</p>
+    <p class="links">Engineer: @Html.ActionLink($"{Model.Engineer.Name}", "Details", "Engineers", new { id = Model.EngineerId})</p>
+  </div>
+</div>

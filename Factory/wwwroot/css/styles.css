@@ -1,0 +1,44 @@
+.header {
+  text-align: center;
+  padding: 40px;
+  background-color: #666699;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.links-buttons {
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+  margin-right: 5px;
+  background-color: #33334d;
+}
+
+.links-buttons a{
+  color: white;
+  text-decoration: none;
+}
+
+.status {
+  color: #339966;
+  font-weight: bold;
+}
+
+.info {
+  color: #4d4d4d;
+  font-size: 20px;
+}
+
+.links a {
+  color: #4d4d4d;
+  font-size: 20px;
+}
+
+.btn {
+  padding: 5px;
+}
+
+h1 {
+  text-align: center;
+}

@@ -4,19 +4,25 @@
 
 @model Factory.Models.Location
 
-<h3>Add new location:</h3>
-<hr />
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.LocationId)
-  <div class="form-group">
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name, new {@class = "form-control"})
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Back to locations list", "Index")</p>
   </div>
-  <div class="form-group">
-    @Html.LabelFor(model => model.Address)
-    @Html.EditorFor(model => model.Address, new {@class = "form-control"})
+  <div class="col-md-9">
+    <h3>Add new location:</h3>
+    <hr />
+    @using (Html.BeginForm())
+    {
+      @Html.HiddenFor(model => model.LocationId)
+      <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name, new {@class = "form-control"})
+      </div>
+      <div class="form-group">
+        @Html.LabelFor(model => model.Address)
+        @Html.EditorFor(model => model.Address, new {@class = "form-control"})
+      </div>
+      <input type="submit" value="Edit" class="btn" />
+    }
   </div>
-  <input Description="submit" value="Edit" class="btn" />
-}
-<p>@Html.ActionLink("Back to locations list", "Index")</p>
+</div>

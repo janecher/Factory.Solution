@@ -5,21 +5,27 @@
 @using Factory.Models
 @model Factory.Models.Engineer
 
-<h3>Add a machine to an engineer:</h3>
-<hr />
-<p class="info">@Html.DisplayFor(model => model.Name)</p>
-
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.EngineerId)
-  <div class="form-group"> 
-    @Html.Label("Select machines:")
-    @foreach (Machine machine in ViewBag.MachineId)
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Back to engineers list", "Index")</p>
+  </div>
+  <div class="col-md-9">
+    <h3>Add a machine to an engineer:</h3>
+    <hr />
+    <p class="info">@Html.DisplayFor(model => model.Name)</p>
+    @using (Html.BeginForm())
     {
-      @Html.Label(machine.Name)
-      @Html.CheckBox("MachineId", false, new { value = machine.MachineId })
+      @Html.HiddenFor(model => model.EngineerId)
+      <div class="form-group"> 
+        @Html.Label("Select machines:")
+        <br>
+        @foreach (Machine machine in ViewBag.MachineId)
+        {
+          @Html.Label(machine.Name)
+          @Html.CheckBox("MachineId", false, new { value = machine.MachineId, @class="checkbox" })
+        }
+      </div>
+      <input type="submit" value="Add new machine" class="btn" />
     }
   </div>
-  <input Description="submit" value="Add new machine" class="btn" />
-}
-<p>@Html.ActionLink("Back to engineers list", "Index")</p>
+</div>

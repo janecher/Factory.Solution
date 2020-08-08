@@ -4,56 +4,57 @@
 
 @model Factory.Models.Engineer
 
-<h3>Engineer info:</h3>
-<hr />
-<p class="info">@Html.DisplayFor(model => model.Name)</p>
-<p class="info">@Html.DisplayFor(model => model.License)</p>
-<p class="info">@Html.DisplayFor(model => model.Location.Name)</p>
-
-<hr />
-<h4>List of all machines that engineer is licensed to repair:</h4>
-@if(@Model.Machines.Count == 0)
-{
-  <p>Engineer doesn't have any machine in profile.</p>
-}
-else
-{
-  <ul>
-  @foreach(var join in Model.Machines)
-  {
-    <li>@Html.ActionLink($"{@join.Machine.Name}, {@join.Machine.Status}", "Details", "Machines", new { id = join.Machine.MachineId})</li>
-    @using (Html.BeginForm("DeleteMachine", "Engineers"))
+<div class="row">
+  <div class="col-md-3">
+    <p class="links-buttons">@Html.ActionLink("Home", "Index", "Home")</p>
+    <p class="links-buttons">@Html.ActionLink("Back to engineers list", "Index")</p>
+    <p class="links-buttons">@Html.ActionLink("Edit engineer info", "Edit", new { id = Model.EngineerId })</p>
+    <p class="links-buttons">@Html.ActionLink("Delete engineer", "Delete", new { id = Model.EngineerId })</p>
+    <p class="links-buttons">@Html.ActionLink("Add a machine", "AddMachine", new { id = Model.EngineerId })</p>
+  </div>
+  <div class="col-md-9">
+    <h3>Engineer info:</h3>
+    <hr />
+    <p class="info">Name: @Html.DisplayFor(model => model.Name)</p>
+    <p class="info">License: @Html.DisplayFor(model => model.License)</p>
+    <p class="info">Location: @Html.DisplayFor(model => model.Location.Name)</p>
+    <p class="status">@Html.DisplayFor(model => model.Status)</p>
+    <hr />
+    <h4>List of all machines that engineer is licensed to repair:</h4>
+    @if(@Model.Machines.Count == 0)
     {
-      @Html.Hidden("joinId", @join.EngineerMachineId)
-      <input Description="submit" value="Delete" class="btn" />
+      <p>Engineer doesn't have any machine in profile.</p>
     }
-  }
-  </ul>
-}
-<hr />
-<h4>Incidents:</h4>
-@if(@Model.Incidents.Count == 0)
-{
-  <p>Engineer doesn't have any machine incident to fix.</p>
-}
-else
-{
-  <ul>
-  @foreach(var incident in Model.Incidents)
-  {
-    <li>@Html.ActionLink($"{@incident.Description}", "Details", "Incidents", new { id = incident.IncidentId})</li>
-    @using (Html.BeginForm("DeleteIncident", "Engineers"))
+    else
     {
-      @Html.Hidden("engineerId", Model.EngineerId)
-      @Html.Hidden("incidentId", @incident.IncidentId)
-      <input Description="submit" value="Delete" class="btn" />
+      @foreach(var join in Model.Machines)
+      {
+        <p class="links">@Html.ActionLink($"{@join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId})</p>
+        @using (Html.BeginForm("DeleteMachine", "Engineers"))
+        {
+          @Html.Hidden("joinId", @join.EngineerMachineId)
+          <input type="submit" value="Delete" class="btn" />
+        }
+      }
     }
-  }
-  </ul>
-}
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
-<p>@Html.ActionLink("Back to engineers list", "Index")</p>
-<p>@Html.ActionLink("Edit engineer info", "Edit", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Delete engineer", "Delete", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Add a machine", "AddMachine", new { id = Model.EngineerId })</p>
+    <hr />
+    <h4>Incidents:</h4>
+    @if(@Model.Incidents.Count == 0)
+    {
+      <p>Engineer doesn't have any machine incident to fix.</p>
+    }
+    else
+    {
+      @foreach(var incident in Model.Incidents)
+      {
+        <p class="links">@Html.ActionLink($"{@incident.Description}", "Details", "Incidents", new { id = incident.IncidentId})</p>
+        @using (Html.BeginForm("DeleteIncident", "Engineers"))
+        {
+          @Html.Hidden("engineerId", Model.EngineerId)
+          @Html.Hidden("incidentId", @incident.IncidentId)
+          <input type="submit" value="Delete" class="btn" />
+        }
+      }
+    }
+  </div>
+</div>
